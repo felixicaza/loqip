@@ -1,0 +1,118 @@
+@view-transition {
+  navigate: auto;
+}
+
+:root {
+  --scrollbar-track-color: var(--sl-color-bg-nav);
+  --scrollbar-thumb-color: var(--sl-color-hairline-light);
+  --scrollbar-size: 5px;
+  --transition-color: color 300ms ease;
+
+  interpolate-size: allow-keywords;
+}
+
+*::-webkit-scrollbar {
+  width: var(--scrollbar-size);
+  height: var(--scrollbar-size);
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--scrollbar-track-color);
+  border-radius: 7px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-color);
+  border-radius: 7px;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
+  }
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+.site-title {
+  gap: 8px;
+
+  & a {
+    transition: var(--transition-color);
+
+    &:active {
+      color: var(--sl-color-white);
+    }
+
+    @media (any-hover: hover) {
+      &:hover {
+        color: var(--sl-color-white);
+      }
+    }
+  }
+
+  & img {
+    height: 26px;
+  }
+}
+
+.social-icons {
+  &::after {
+    content: unset;
+  }
+
+  & a svg {
+    --size: 22px;
+
+    width: var(--size);
+    height: var(--size);
+  }
+}
+
+.sl-link-button {
+  padding: 10px 28px;
+}
+
+div.hero {
+  --size: 300px;
+
+  & img {
+    width: var(--size);
+    height: var(--size);
+    anchor-name: --hero-logo;
+    aspect-ratio: 1;
+  }
+
+  &::before {
+    --initial-scale: 0.95;
+
+    content: '';
+    width: 100%;
+    height: 100%;
+    max-width: var(--size);
+    max-height: var(--size);
+    aspect-ratio: 1;
+    position: absolute;
+    position-anchor: --hero-logo;
+    position-area: center;
+    background-image: linear-gradient(140deg, #1080f9 0%, #8ed7fe 25%, #8be1ff 50%, #ffa30c 75%, #fe541b 100%);
+    z-index: -1;
+    filter: blur(16px);
+    animation: rotate 12s linear infinite;
+    border-radius: 60px;
+    opacity: 0.65;
+    scale: var(--initial-scale);
+  }
+}
+
+@keyframes rotate {
+  0%, 100% {
+    scale: var(--initial-scale);
+  }
+  50% {
+    scale: 1.045;
+  }
+}

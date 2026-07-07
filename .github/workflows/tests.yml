@@ -1,0 +1,58 @@
+name: CI
+
+on:
+   push:
+      branches:
+         - main
+
+   pull_request:
+      branches:
+         - main
+
+jobs:
+   lint:
+      runs-on: ubuntu-latest
+      steps:
+         - uses: actions/checkout@v7
+
+         - uses: actions/setup-node@v7
+           with:
+              node-version: lts/*
+
+         - uses: pnpm/action-setup@v6
+
+         - name: Install dependencies
+           run: pnpm ci
+
+         - name: Build
+           run: pnpm build
+
+         - name: Lint
+           run: pnpm lint
+
+         - name: Typecheck
+           run: pnpm typecheck
+
+   tests:
+      runs-on: ${{ matrix.os }}
+
+      strategy:
+         matrix:
+            node: [lts/*]
+            os: [ubuntu-latest, windows-latest, macos-latest]
+         fail-fast: false
+
+      steps:
+         - uses: actions/checkout@v7
+
+         - uses: actions/setup-node@v7
+           with:
+              node-version: ${{ matrix.node }}
+
+         - uses: pnpm/action-setup@v6
+
+         - name: Install dependencies
+           run: pnpm ci
+
+         - name: Tests
+           run: pnpm test

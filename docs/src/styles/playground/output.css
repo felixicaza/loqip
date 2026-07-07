@@ -1,0 +1,105 @@
+@scope (.playground) {
+  .output {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow: hidden;
+
+    & header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      & button {
+        margin-top: unset;
+      }
+    }
+
+    & .output-content {
+      margin-top: unset;
+      display: inherit;
+      flex-direction: inherit;
+      gap: 16px;
+      flex-grow: 1;
+
+      & .tabs {
+        display: inherit;
+        gap: 8px;
+        margin-top: unset;
+        overflow-x: auto;
+        padding-bottom: 6px;
+
+        @media (width >= 514px) {
+          border-bottom: 1px solid var(--sl-color-gray-5);
+          padding-bottom: unset;
+        }
+
+        & button {
+          border: none;
+          border-bottom: 2px solid transparent;
+          padding: 4px 12px;
+          color: inherit;
+          background: transparent;
+          cursor: pointer;
+          margin-top: unset;
+
+          &.is-active {
+            border-bottom-color: var(--sl-color-accent);
+            color: var(--sl-color-accent);
+          }
+        }
+      }
+
+      & .panels {
+        margin-top: unset;
+        flex-grow: 1;
+
+        & section {
+          --spacing: 16px;
+
+          margin-top: inherit;
+          height: 100%;
+          position: relative;
+
+          @media (any-hover: hover) {
+            &:hover button {
+              opacity: 1;
+            }
+          }
+
+          & button {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            translate: calc(var(--spacing) * -1) var(--spacing);
+            opacity: 0;
+            cursor: pointer;
+            transition: opacity 200ms ease;
+            background: color-mix(in oklch, var(--sl-color-gray-4), transparent 50%);
+            backdrop-filter: blur(4px);
+            border: none;
+            font-size: 14px;
+            padding: 1px 12px;
+            border-radius: 4px;
+          }
+
+          & pre {
+            background: transparent !important;
+            margin: unset !important;
+            height: inherit;
+            max-height: 353px;
+            overflow: auto;
+            border-radius: 8px !important;
+            white-space: pre-wrap !important;
+            overflow-wrap: anywhere !important;
+            padding: var(--spacing) !important;
+
+            & div {
+              margin-top: unset;
+            }
+          }
+        }
+      }
+    }
+  }
+}

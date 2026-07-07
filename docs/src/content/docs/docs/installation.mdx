@@ -1,0 +1,35 @@
+---
+title: Installation
+description: Installation Page
+---
+import { PackageManagers } from 'starlight-package-managers'
+
+LoQIP is distributed through npm registry and can be installed with any modern JavaScript package manager.
+
+Before installing, make sure your project uses a supported JavaScript runtime such as [Node.js](https://nodejs.org/), [Deno](https://deno.com/), or another environment capable of running the package.
+
+## Install the package
+
+Choose the package manager you prefer.
+
+<PackageManagers pkg="@napi-rs/image loqip" pkgManagers={['npm', 'pnpm', 'yarn', 'bun']} />
+
+## Why is `@napi-rs/image` installed separately?
+
+LoQIP uses [`@napi-rs/image`](https://image.napi.rs/) to decode and process images. Keeping it as a peer dependency gives you full control over the version used in your project while avoiding duplicate native binaries when multiple libraries depend on the same package.
+
+This also allows LoQIP to support the image formats provided by [`@napi-rs/image`](https://image.napi.rs/) without introducing additional abstraction or overhead.
+
+## Verify your installation
+
+Once the packages are installed, you're ready to import LoQIP into your project.
+
+```ts
+import { getLoqip } from "loqip";
+```
+
+If the import resolves successfully, you're all set.
+
+## Next steps
+
+Continue to the [**Usage**](/docs/usage) guide to generate your first low-quality image placeholder.

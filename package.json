@@ -1,0 +1,67 @@
+{
+  "name": "@felixicaza/loqip",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Low Quality Image Placeholder generator",
+  "keywords": [
+    "lqip",
+    "placeholder",
+    "image",
+    "low quality",
+    "blurhash",
+    "base64",
+    "css"
+  ],
+  "license": "MIT",
+  "author": "Felix Icaza <contacto@felixicaza.com>",
+  "type": "module",
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "oxlint . && eslint . --cache",
+    "lint:fix": "oxlint . --fix --fix-suggestions --fix-dangerously && eslint . --cache --fix",
+    "prepare": "simple-git-hooks",
+    "prepublishOnly": "pnpm build",
+    "preview": "turbo preview",
+    "release": "pnpm -C packages/loqip exec bumpp --tag \"loqip@%s\" --commit \"release(loqip): %s\" --no-push",
+    "start": "turbo start",
+    "start:watch": "turbo start:watch",
+    "test": "vitest",
+    "test:update": "vitest --update",
+    "typecheck": "oxlint . --type-aware --type-check"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm nano-staged"
+  },
+  "nano-staged": {
+    "*": [
+      "pnpm lint:fix",
+      "pnpm typecheck"
+    ]
+  },
+  "devDependencies": {
+    "@felixicaza/eslint-config": "0.1.4",
+    "@felixicaza/oxlint-config": "0.1.5",
+    "@felixicaza/tsdown-config": "0.1.4",
+    "@types/node": "26.5.0",
+    "@typescript-eslint/parser": "8.70.0",
+    "bumpp": "12.3.0",
+    "eslint": "9.39.4",
+    "jiti": "2.7.0",
+    "nano-staged": "1.0.2",
+    "oxlint": "1.82.0",
+    "oxlint-tsgolint": "7.0.2001",
+    "simple-git-hooks": "2.14.0",
+    "tsdown": "0.22.14",
+    "tsx": "4.23.13",
+    "turbo": "2.10.12",
+    "typescript": "6.0.3",
+    "vitest": "5.0.0"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "11.8.0"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "name": "loqip-docs",
+  "version": "0.0.0",
+  "private": true,
+  "description": "LoQIP documentation",
+  "type": "module",
+  "scripts": {
+    "astro": "astro",
+    "build": "astro build",
+    "dev": "astro dev",
+    "preview": "astro preview",
+    "start": "astro dev"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "0.42.0",
+    "@catppuccin/starlight": "2.1.0",
+    "@napi-rs/image-wasm32-wasi": "1.14.0",
+    "@speed-highlight/core": "2.1.0",
+    "@xtreat/astro-iconify": "1.2.7",
+    "astro": "7.3.2",
+    "astro-compressor": "1.3.0",
+    "buffer": "6.0.3",
+    "loqip": "workspace:*",
+    "starlight-llms-txt": "0.11.0",
+    "starlight-package-managers": "0.12.0",
+    "ts-dedent": "2.3.0"
+  },
+  "devDependencies": {
+    "wrangler": "4.131.0"
+  }
+}

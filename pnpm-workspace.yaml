@@ -1,0 +1,24 @@
+packages:
+   - packages/*
+   - docs
+
+minimumReleaseAgeExclude:
+   - "@felixicaza/eslint-config"
+   - "@felixicaza/oxlint-config"
+   - "@felixicaza/tsdown-config"
+
+allowBuilds:
+   esbuild: true
+   simple-git-hooks: true
+   workerd: true
+
+saveExact: true
+blockExoticSubdeps: true
+autoInstallPeers: false
+minimumReleaseAge: 2880
+trustPolicy: no-downgrade
+strictPeerDependencies: true
+strictDepBuilds: true
+dedupePeers: true
+shellEmulator: true
+color: always

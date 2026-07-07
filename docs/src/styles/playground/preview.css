@@ -1,0 +1,130 @@
+@scope (.playground) {
+  .preview {
+    display: inherit;
+    height: 486px;
+    position: relative;
+    isolation: isolate;
+
+    & > * {
+      grid-area: 1 / 1;
+    }
+
+    & section {
+      margin-top: 0px;
+      display: inherit;
+      place-content: center;
+      container-type: size;
+      overflow: clip;
+      border: 1px dashed var(--sl-color-gray-4);
+      border-radius: 8px;
+    }
+
+    & .original,
+    & .placeholder {
+      background: var(--background);
+      /* background-size: var(--background-size, contain); */
+      /* background-position: var(--background-position, center); */
+      /* background-repeat: var(--background-repeat, no-repeat); */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      width: 100cqi;
+      height: 100cqb;
+      scale: var(--zoom, 1);
+      transform-origin: center;
+      border-radius: 4px;
+    }
+
+    & .before {
+      mask: linear-gradient(to right, #000 0, var(--pos, 50%), #0000 0);
+    }
+
+    & .after {
+      mask: linear-gradient(to right, #0000 0, var(--pos, 50%), #000 0);
+    }
+
+    & input[type="range"] {
+      z-index: 1;
+      appearance: none;
+      background: transparent;
+      cursor: pointer;
+      container-type: size;
+      -webkit-tap-highlight-color: transparent;
+
+      &:hover + .zoom-controls {
+        opacity: 1;
+      }
+
+      &::-webkit-slider-thumb {
+        appearance: none;
+        width: 4px;
+        height: 100cqb;
+        background-color: var(--sl-color-text);
+      }
+
+      &::-moz-range-thumb {
+        appearance: none;
+        width: 4px;
+        height: 100cqb;
+        background-color: var(--sl-color-text);
+      }
+    }
+
+    & .zoom-controls {
+      --size: fit-content;
+
+      width: var(--size);
+      height: var(--size);
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      z-index: 10;
+      translate: -32px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 15px;
+      background: color-mix(in oklch, var(--sl-color-gray-4), transparent 50%);
+      backdrop-filter: blur(4px);
+      border-radius: 4px;
+      padding: 1px 6px;
+      opacity: 0;
+      transition: opacity 300ms ease;
+      width: 100px;
+
+      /* Fixes where it hides when hovered over itself. */
+      &:hover {
+        opacity: 1;
+      }
+
+      & button {
+        --background-hover: color-mix(in oklch, var(--sl-color-gray-4), transparent 60%);
+
+        background: transparent;
+        border: none;
+        padding: 0px;
+        margin-top: 0px;
+        cursor: pointer;
+        color: currentColor;
+        border-radius: inherit;
+        padding: 1px;
+        transition: background 300ms ease;
+
+        &:active {
+          background: var(--background-hover);
+        }
+
+        @media (any-hover: hover) {
+          &:hover {
+            background: var(--background-hover);
+          }
+        }
+      }
+
+      & output {
+        display: inline-block;
+        margin-top: 0px;
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+name: Release
+
+permissions:
+   id-token: write
+   contents: write
+
+on:
+   push:
+      tags:
+         - "**@**"
+
+env:
+   PKG_DIR: packages/loqip
+
+jobs:
+   release:
+      runs-on: ubuntu-latest
+
+      steps:
+         - uses: actions/checkout@v7
+           with:
+              fetch-depth: 0
+
+         - uses: actions/setup-node@v7
+           with:
+              node-version: lts/*
+
+         - uses: pnpm/action-setup@v6
+
+         - name: Install dependencies
+           run: pnpm ci
+
+         - name: Generate changelog/release notes
+           run: pnpx changelogithub@latest
+           env:
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+         - name: Build package
+           run: pnpm -C "${PKG_DIR}" build
+
+         - name: Publish package
+           working-directory: ${{ env.PKG_DIR }}
+           run: pnpm publish --access public --no-git-checks
+           env:
+              NPM_CONFIG_PROVENANCE: true

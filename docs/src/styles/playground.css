@@ -1,0 +1,21 @@
+@layer starlight, catppuccin, playground, playground.aside, playground.preview, playground.output, playground.shared;
+
+@import "./playground/aside.css" layer(playground.aside);
+@import "./playground/preview.css" layer(playground.preview);
+@import "./playground/output.css" layer(playground.output);
+@import "./playground/shared.css" layer(playground.shared);
+
+@layer playground {
+  .playground {
+    display: grid;
+    gap: 16px;
+    counter-reset: title;
+    margin-top: 48px;
+
+    @media (width >= 1200px) {
+      grid-template-columns: 1fr 2fr;
+      grid-template-rows: repeat(2, 1fr);
+      gap: 32px;
+    }
+  }
+}

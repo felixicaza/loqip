@@ -1,0 +1,272 @@
+@scope (.playground) {
+  aside {
+    display: flex;
+    flex-direction: column;
+    grid-row: span 2 / span 2;
+
+    & .file-input {
+      display: inherit;
+      flex-direction: inherit;
+      gap: 16px;
+      padding: 16px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--sl-color-gray-5);
+
+      & label {
+        --active-background: hsl(240, 21%, 16%);
+        --active-border-color: hsl(251, 60%, 70%);
+
+        display: inherit;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 36px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        border: 1px dashed var(--sl-color-gray-4);
+        margin-top: unset;
+        transition: border-color 150ms ease, background-color 150ms ease;
+
+        &.dragging {
+          border-color: hsl(263, 100%, 70%);
+          background: hsla(266, 100%, 70%, 0.09);
+        }
+
+        &:active {
+          background: var(--active-background);
+          border-color: var(--active-border-color);
+        }
+
+        @media (any-hover: hover) {
+          &:hover {
+            background: var(--active-background);
+            border-color: var(--active-border-color);
+          }
+        }
+
+        & input {
+          display: none;
+        }
+      }
+
+      & .test-images {
+        margin-top: unset;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        & .demos {
+          margin-top: inherit;
+          display: inherit;
+          gap: 12px;
+
+          & button {
+            background: unset;
+            border: unset;
+            margin: unset;
+            padding: unset;
+            cursor: pointer;
+
+            & img {
+              margin-top: inherit;
+              aspect-ratio: 1;
+              object-fit: cover;
+              border-radius: 4px;
+            }
+          }
+        }
+      }
+    }
+
+    & .options {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 16px;
+      margin-top: unset;
+
+      & details {
+        --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23cdd6f4' d='M12.6 12L8.7 8.1q-.275-.275-.275-.7t.275-.7t.7-.275t.7.275l4.6 4.6q.15.15.213.325t.062.375t-.062.375t-.213.325l-4.6 4.6q-.275.275-.7.275t-.7-.275t-.275-.7t.275-.7z'/%3E%3C/svg%3E");
+
+        padding: 0px;
+        border: none;
+
+        &::details-content {
+          overflow-y: clip;
+          height: 0px;
+          opacity: 0;
+          transition:
+            height 200ms ease,
+            opacity 50ms ease,
+            content-visibility 250ms ease allow-discrete;
+        }
+
+        &[open] {
+          &::details-content {
+            opacity: 1;
+            height: auto;
+          }
+
+          summary::after {
+            content: var(--icon);
+            rotate: 90deg;
+
+            @media (width >= 1200px) {
+              content: none;
+            }
+          }
+        }
+
+        & summary {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          &::before {
+            content: unset;
+          }
+
+          &::after {
+            --size: 26px;
+
+            content: var(--icon);
+            width: var(--size);
+            height: var(--size);
+            translate: 6px 0px;
+            transition: rotate 300ms ease;
+          }
+        }
+      }
+
+      & .options-container {
+        --gap: 18px;
+
+        margin-top: unset;
+        display: flex;
+        flex-direction: column;
+        gap: var(--gap);
+
+        & label {
+          display: inherit;
+          flex-direction: inherit;
+          gap: 4px;
+          margin-top: 0px;
+
+          &:has(input[type="checkbox"]) {
+            flex-direction: row;
+            justify-content: space-between;
+            gap: unset;
+          }
+
+          &:has(#autoOrient) {
+            border-top: 1px solid var(--sl-color-gray-5);
+            padding-top: var(--gap);
+          }
+
+          & select,
+          & input:not(input[type="range"], input[type="checkbox"]) {
+            background: inherit;
+            border: 1px solid var(--sl-color-gray-4);
+            border-radius: 4px;
+            padding: 4px 8px;
+
+            &:focus {
+              outline: none;
+              background: hsl(240, 21%, 16%);
+            }
+          }
+
+          & input[type=range] {
+            --radius: 20px;
+
+            appearance: none;
+            border-radius: var(--radius);
+            background: transparent;
+
+            &::-webkit-slider-runnable-track {
+              height: 10px;
+              background: var(--sl-color-gray-4);
+              border-radius: var(--radius);
+            }
+
+            &::-moz-range-track {
+              height: 10px;
+              background: var(--sl-color-gray-4);
+              border-radius: var(--radius);
+            }
+
+            &::-webkit-slider-thumb {
+              --size: 20px;
+
+              appearance: none;
+              height: var(--size);
+              width: var(--size);
+              background: var(--sl-color-accent);
+              border-radius: 50%;
+              border: 2px solid currentColor;
+              translate: 0px -5px;
+            }
+
+            &::-moz-range-thumb {
+              --size: 18px;
+
+              appearance: none;
+              height: var(--size);
+              width: var(--size);
+              background: var(--sl-color-accent);
+              border-radius: 50%;
+              border: 2px solid currentColor;
+            }
+          }
+
+          & select {
+            padding-block: 6px;
+          }
+
+          & .label-container {
+            display: inherit;
+            justify-content: space-between;
+
+            &:has(+ input[type="range"]) {
+              margin-bottom: 8px;
+            }
+          }
+
+          & .label-content {
+            display: inherit;
+            align-items: center;
+            gap: 6px;
+          }
+        }
+      }
+    }
+
+    & #generate {
+      --hover-color: color-mix(in hsl, var(--sl-color-accent), hsl(0, 0%, 0%) 12%);
+
+      margin: 16px;
+      margin-top: 24px;
+      background: var(--sl-color-accent);
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 200ms ease;
+
+      &[disabled] {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      &:active {
+        background: var(--hover-color);
+      }
+
+      @media (any-hover: hover) {
+        &:hover {
+          background: var(--hover-color);
+        }
+      }
+    }
+  }
+}
