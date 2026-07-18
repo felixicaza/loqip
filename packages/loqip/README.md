@@ -150,6 +150,22 @@ Size of the generated placeholder image, in pixels. Must be an integer between `
   ```
 </details>
 
+## ⚡ Performance
+
+[LoQIP][website] was benchmarked against [`plaiceholder`](https://github.com/joe-bell/plaiceholder) using the same input images and 100 samples per case.
+
+| Image | LoQIP latency | Plaiceholder latency | Speedup |
+| --- | ---: | ---: | ---: |
+| landscape-exif.jpg | ~55 ms | ~101 ms | 1.8× |
+| pexels-fabianwiktor-3470872.jpg | ~711 ms | ~825 ms | 1.2× |
+| portrait-exif.jpg | ~52 ms | ~125 ms | 2.4× |
+| transparent.png | ~65 ms | ~316 ms | 4.9× |
+
+Average results show that [LoQIP][website] provides lower latency and higher throughput across all tested images.
+
+> [!NOTE]
+> Results may vary depending on hardware, runtime version and image characteristics. See full technical results in [benchmark folder](https://github.com/felixicaza/loqip/tree/main/benchmark).
+
 ## 🏆 Credits
 
 This project is highly inspired by [@joe-bell/plaiceholder](https://github.com/joe-bell/plaiceholder).

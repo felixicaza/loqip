@@ -16,6 +16,7 @@
   "author": "Felix Icaza <contacto@felixicaza.com>",
   "type": "module",
   "scripts": {
+    "benchmark": "node benchmark/benchmark.js",
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "oxlint . && eslint . --cache",
@@ -51,7 +52,10 @@
     "nano-staged": "1.0.2",
     "oxlint": "1.82.0",
     "oxlint-tsgolint": "7.0.2001",
+    "plaiceholder": "3.0.0",
+    "sharp": "0.35.4",
     "simple-git-hooks": "2.14.0",
+    "tinybench": "6.2.0",
     "tsdown": "0.22.14",
     "tsx": "4.23.13",
     "turbo": "2.10.12",
